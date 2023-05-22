@@ -47,11 +47,10 @@ public class UsuarioController {
         usuarioDto.setFechaIngreso(new Date());
         usuarioDto.setTelefono(request.get("telefono").toString());
         usuarioDto.setDireccion(request.get("direccion").toString());
-        usuarioDto.setPassword(request.get("password").toString());
 
         String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
 
-        res.put("Status", HttpStatus.ACCEPTED);
+        res.put("status", HttpStatus.ACCEPTED);
         res.put("data",respuesta);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
@@ -65,7 +64,7 @@ public class UsuarioController {
         System.out.println("@@@@@"+request.toString());
 
         UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setIdUsuario(0);
+        usuarioDto.setIdUsuario(Integer.parseInt(request.get("idUsuario").toString()));
         usuarioDto.setNombre(request.get("nombre").toString());
         usuarioDto.setApellido(request.get("apellido").toString());
         usuarioDto.setCorreo(request.get("correo").toString());
@@ -74,14 +73,26 @@ public class UsuarioController {
         usuarioDto.setFechaIngreso(new Date());
         usuarioDto.setTelefono(request.get("telefono").toString());
         usuarioDto.setDireccion(request.get("direccion").toString());
-        usuarioDto.setPassword(request.get("password").toString());
 
         String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
 
-        res.put("Status", HttpStatus.ACCEPTED);
+        res.put("status", HttpStatus.ACCEPTED);
         res.put("data",respuesta);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> eliminarUsuario(@PathVariable int id){
+        Map<String, Object> res = new HashMap<>();
+
+        String respuesta = this.usuarioNegocio.eliminar(id);
+
+        res.put("status", HttpStatus.CREATED);
+        res.put("data", respuesta);
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+
     }
 
 

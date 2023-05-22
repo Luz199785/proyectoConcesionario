@@ -63,7 +63,7 @@ public class UsuarioNegocio {
              usuario.setTelefono(usuarioDto.getTelefono());
              usuario.setDireccion(usuarioDto.getDireccion());
              usuario.setPassword(usuarioDto.getPassword());
-             this.usuarioImpl.actualizarUsuario(usuario);
+             this.usuarioImpl.crearUsuario(usuario);
 
          }
          return "OK";
@@ -72,5 +72,17 @@ public class UsuarioNegocio {
             return "BAD";
 
         }
+    }
+
+    public String eliminar (int id) {
+        Usuario usuario;
+        try {
+            this.usuarioImpl.eliminarUsuario(id);
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "BAD";
+        }
+
     }
 }

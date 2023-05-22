@@ -9,6 +9,6 @@ public interface UsuarioService {
     public Usuario encontrarTodosPorId(int id);
     public void crearUsuario(Usuario usuario);
     public void actualizarUsuario(Usuario usuario);
-    public void eliminarUsuario(Usuario usuario);
+    public void eliminarUsuario(int id);
 
 }
